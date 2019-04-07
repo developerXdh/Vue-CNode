@@ -1,47 +1,53 @@
 <template>
-    <div class="PostList">
-        <div class="loading" v-if="isLoading">
-            <img src="..\assets\loading.gif" alt="loading">
+<div class="PostList">
+  <div class="loading" v-if="isLoading">
+    <img src="..\assets\loading.gif" alt="loading">
+  </div>
+  <main class="posts" v-else>
+    <ul>
+      <li>
+        <div class="toobar">
+          <span>全部</span>
+          <span>精华</span>
+          <span>问答</span>
+          <span>分享</span>
+          <span>招聘</span>
         </div>
-        <main class="posts" v-else>
-            <ul>
-                <li>
-                  <div class="toobar">
-                    <span>全部</span>
-                    <span>精华</span>
-                    <span>问答</span>
-                    <span>分享</span>
-                    <span>招聘</span>
-                  </div>
-                </li>
-                <li v-for="post in posts">
-                    <img :src="post.author.avatar_url">
-                    <span class="allcount"><span class="reply_count">{{post.reply_count}}</span>/{{post.visit_count}}</span>
-                    <span :class="{put_good:(post.good === true),put_top:(post.top === true),topiclist_tab:(post.good !== true&&post.top !== true)}">{{posts | tabFormatter}}</span>
-                    <router-link :to="{name:'post_content',params:{id:post.id}}">
-                      <span>{{post.title}}</span>
-                    </router-link>
-                    <span class="last_reply">{{post.last_reply_at | formatDate}}</span>
-                </li>
-            </ul>
-        </main>
-    </div>
+      </li>
+      <li v-for="post in posts">
+        <img :src="post.author.avatar_url">
+        <span class="allcount"><span class="reply_count">{{post.reply_count}}</span>/{{post.visit_count}}</span>
+        <span :class="{put_good:(post.good === true),put_top:(post.top === true),topiclist_tab:(post.good !== true&&post.top !== true)}">{{posts | tabFormatter}}</span>
+        <router-link :to="{name:'post_content',params:{id:post.id,name:post.author.loginname}}">
+          <span>{{post.title}}</span>
+        </router-link>
+        <span class="last_reply">{{post.last_reply_at | formatDate}}</span>
+      </li>
+      <li>
+        <Pagination @handleList="renderList"></Pagination>
+      </li>
+    </ul>
+  </main>
+</div>
 </template>
 
 <script>
+import Pagination from './Pagination'
 export default {
   name: 'Postlist',
   data(){
-      return {
-          isLoading:"",
-          posts:[],
-        }
+    return {
+        isLoading:"",
+        posts:[],
+        postpage:1
+      }
+  },
+  components:{
+    Pagination
   },
   methods: {
-     getData(){
-         this.$axios.get('https://cnodejs.org/api/v1/topics',{
-             limit:20,page:1
-         }).
+      getData(){
+         this.$axios.get('https://cnodejs.org/api/v1/topics',{params:{limit:20,page:this.postpage}}).
          then(res=>{
              this.isLoading = false
              this.posts = res.data.data;
@@ -49,7 +55,11 @@ export default {
          catch(err=>{
              console.log(err)
          })
-        },
+      }, 
+      renderList(value){
+          this.postpage = value;
+          this.getData();
+      }
     },
   beforeMount(){
         this.isLoading = true
