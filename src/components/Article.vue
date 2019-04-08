@@ -79,7 +79,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .topbar {
-    padding: 10px;
+    padding: 10px 0;
     background-color: #f6f6f6;
     height: 16px;
     font-size: 12px;
