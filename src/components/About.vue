@@ -1,6 +1,6 @@
 <template>
 <main>
-  <header>主页 / API</header>
+  <header>主页 / 关于</header>
   <div>
     <h1>关于</h1>
     <p>CNode 社区为国内最大最具影响力的 Node.js 开源技术社区，致力于 Node.js 的技术研究。</p>
