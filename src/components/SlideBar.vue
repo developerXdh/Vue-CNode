@@ -2,17 +2,18 @@
 <div class="autherinfo">
   <div class="authersummay">
     <div class="topbar">作者</div>
-      <router-link :to="{name:'user_info',params:{name:userinfo.loginname}}">
+    <router-link :to="{name:'user_info',params:{name:userinfo.loginname}}">
       <img :src="userinfo.avatar_url" alt="">
+      <span class="id">{{userinfo.loginname}}</span>
     </router-link>
+    <div>
+    </div>
   </div>
   <div class="recent_topics">
     <div class="topbar">作者最近主题</div>
     <ul>
       <li v-for="list in topcilimitby5">
-        <router-link :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">
-          {{list.title}}
-        </router-link>
+        <router-link :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">{{list.title}}</router-link>
       </li>
     </ul>
   </div>
@@ -20,9 +21,7 @@
     <div class="topbar">作者最近回复</div>
     <ul>
       <li v-for="list in replylimitby5">
-        <router-link :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">
-          {{list.title}}
-        </router-link>
+        <router-link :to="{name:'post_content',params:{id:list.id,name:list.author.loginname}}">{{list.title}}        </router-link>
       </li>
     </ul>
   </div>
@@ -42,11 +41,10 @@ export default {
         getData(){
           this.$axios.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`)
             .then(res=>{
-              this.isLoading = false; //加载成功，去除动画
+              this.isLoading = false;
               this.userinfo = res.data.data;
             })
             .catch(function (err) {
-              //处理返回失败后的问题
               console.log(err)
             })
         }
@@ -64,8 +62,8 @@ export default {
         }
       },
       beforeMount(){
-        this.isLoading = true;//加载成功之前显示加载动画
-        this.getData();//在页面加载之前获取数据
+        this.isLoading = true;
+        this.getData();
       }
     }
 </script>
@@ -84,10 +82,8 @@ export default {
     padding: 3px 0 ;
   }
   .recent_replies ul, .recent_topics ul {
-    margin-top: 0px;
-    margin-bottom: 0px;
     list-style: none;
-    padding-left: 14px;
+    padding:5px 14px;
   }
 
   ul a {
@@ -103,14 +99,16 @@ export default {
     font-size: 12px;
     margin-top: 10px;
   }
-
   img {
     height: 48px;
     width: 48px;
     border-radius: 3px;
     margin: 10px;
+    vertical-align:middle;
   }
-
+  .id {
+    vertical-align:middle;
+  }
   .loginname {
     width: 100px;
     float: right;

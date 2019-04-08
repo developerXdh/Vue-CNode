@@ -1,5 +1,8 @@
 <template>
 <div class="PostList">
+  <vue-headful
+    title="CNode"
+  />
   <div class="loading" v-if="isLoading">
     <img src="..\assets\loading.gif" alt="loading">
   </div>
@@ -7,17 +10,17 @@
     <ul>
       <li>
         <div class="toobar">
-          <span>全部</span>
-          <span>精华</span>
-          <span>问答</span>
-          <span>分享</span>
-          <span>招聘</span>
+          <span @click = 'selectCategory'>全部</span>
+          <span @click = 'selectCategory'>精华</span>
+          <span @click = 'selectCategory'>问答</span>
+          <span @click = 'selectCategory'>分享</span>
+          <span @click = 'selectCategory'>招聘</span>
         </div>
       </li>
       <li v-for="post in posts">
-        <img :src="post.author.avatar_url">
+        <router-link :to="{name:'user_info',params:{name:post.author.loginname}}"><img :src="post.author.avatar_url"></router-link>
         <span class="allcount"><span class="reply_count">{{post.reply_count}}</span>/{{post.visit_count}}</span>
-        <span :class="{put_good:(post.good === true),put_top:(post.top === true),topiclist_tab:(post.good !== true&&post.top !== true)}">{{posts | tabFormatter}}</span>
+        <span :class="[{put_good:(post.good === true),put_top:(post.top === true),topiclist_tab:(post.good !== true&&post.top !== true)}]">{{post | tabFormatter}}</span>
         <router-link :to="{name:'post_content',params:{id:post.id,name:post.author.loginname}}">
           <span>{{post.title}}</span>
         </router-link>
@@ -39,7 +42,8 @@ export default {
     return {
         isLoading:"",
         posts:[],
-        postpage:1
+        postpage:1,
+        category: ""
       }
   },
   components:{
@@ -47,7 +51,7 @@ export default {
   },
   methods: {
       getData(){
-         this.$axios.get('https://cnodejs.org/api/v1/topics',{params:{limit:20,page:this.postpage}}).
+         this.$axios.get('https://cnodejs.org/api/v1/topics',{params:{limit:20,page:this.postpage,tab:this.category}}).
          then(res=>{
              this.isLoading = false
              this.posts = res.data.data;
@@ -59,6 +63,33 @@ export default {
       renderList(value){
           this.postpage = value;
           this.getData();
+      },
+      selectCategory(event){
+        this.sb = false
+        switch (event.currentTarget.innerText) {
+          case '全部':
+            this.category = ""
+            this.getData()
+            break;
+          case '精华':
+            this.category = "good"
+            this.getData()
+            break;
+          case '问答':
+            this.category = "ask"
+            this.getData()
+            break;
+          case '分享':
+            this.category = "share"
+            this.getData()
+            break;
+          case '招聘':
+            this.category = "job"
+            this.getData()
+            break;
+          default:
+            break;
+        }
       }
     },
   beforeMount(){

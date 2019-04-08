@@ -4,6 +4,9 @@ import Postlist from '../components/Postlist'
 import Article from '../components/Article'
 import UserInfo from '../components/UserInfo'
 import SlideBar from '../components/SlideBar'
+import Getstart from '../components/Getstart'
+import About from '../components/About'
+import Null from '../components/Null'
 
 Vue.use(Router)
 
@@ -14,6 +17,9 @@ export default new Router({
       path: '/',
       components:{
         main: Postlist
+      },
+      meta:{
+        title:'CNode'
       }
     },
     {
@@ -22,6 +28,9 @@ export default new Router({
       components:{
         main: Article,
         slidebar:SlideBar
+      },
+      meta:{
+        title:'CNode'
       }
     },
     {
@@ -29,6 +38,27 @@ export default new Router({
       path: '/user_info/:name',
       components:{
         main: UserInfo
+      }
+    },
+    {
+      name: 'getstart',
+      path: '/getstart',
+      components:{
+        main: Getstart
+      }
+    },
+    {
+      name: 'about',
+      path: '/about',
+      components:{
+        main: About
+      }
+    },
+    {
+      name: 'null',
+      path: '/null',
+      components:{
+        main: Null
       }
     }
   ]
