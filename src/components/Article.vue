@@ -79,7 +79,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .topbar {
-    padding: 10px 0;
+    padding: 10px;
     background-color: #f6f6f6;
     height: 16px;
     font-size: 12px;
@@ -93,7 +93,6 @@ export default {
 
   #reply, .topic_header {
     background-color: #fff;
-    padding:0px 10px
   }
 
   #reply {
@@ -114,7 +113,7 @@ export default {
   }
   .replySec{
     border-bottom:1px solid #e5e5e5;
-    padding:0 10px;
+    padding:0 20px;
   }
   .replySec p{
     margin:20px 0
