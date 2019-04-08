@@ -116,15 +116,12 @@ export default {
 
   ul {
     list-style: none;
-    width: 100%;
-    max-width: 1344px;
     margin: 0 auto;
   }
 
   ul li:not(:first-child) {
     padding: 9px;
-    font-size: 15px;
-    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, sans-serif !important;
+    font-size: 14px;
     font-weight: 400;
     background-color: white;
     color: #333;
@@ -159,9 +156,6 @@ export default {
     background: #80bd01;
     padding: 2px 4px;
     border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
     color: #fff;
     font-size: 12px;
     margin-right: 10px;
@@ -172,9 +166,6 @@ export default {
     color: #999;
     padding: 2px 4px;
     border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
     font-size: 12px;
     margin-right: 10px;
   }

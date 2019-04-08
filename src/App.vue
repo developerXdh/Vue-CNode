@@ -21,7 +21,7 @@ export default {
 
 <style>
   @import url('./assets/markdown-github.css');
-  *{padding:0;margin:0;font-size:14px}
+  *{padding:0;margin:0;font-size:14px;-webkit-text-size-adjust: none;}
   ul,li{list-style: none}
   a{text-decoration: none}
   body{background-color: #E1E1E1}
