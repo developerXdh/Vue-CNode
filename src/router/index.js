@@ -4,9 +4,8 @@ import Postlist from '../components/Postlist'
 import Article from '../components/Article'
 import UserInfo from '../components/UserInfo'
 import SlideBar from '../components/SlideBar'
-import Getstart from '../components/Getstart'
+import Login from '../components/Login'
 import About from '../components/About'
-import Null from '../components/Null'
 
 Vue.use(Router)
 
@@ -41,10 +40,10 @@ export default new Router({
       }
     },
     {
-      name: 'getstart',
-      path: '/getstart',
+      name: 'login',
+      path: '/login',
       components:{
-        main: Getstart
+        main: Login
       }
     },
     {
@@ -52,13 +51,6 @@ export default new Router({
       path: '/about',
       components:{
         main: About
-      }
-    },
-    {
-      name: 'null',
-      path: '/null',
-      components:{
-        main: Null
       }
     }
   ]

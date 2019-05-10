@@ -5,10 +5,9 @@
     </router-link>
     <ul>
       <li><router-link :to = "{name:'root'}">首页</router-link></li>
-      <li><router-link :to = "{name:'getstart'}">新手入门</router-link></li>
+      <li><router-link :to = "{name:'login'}">登录</router-link></li>
+      <!-- <li><router-link :to = "{name:me}">我的主页</router-link></li> -->
       <li><router-link :to = "{name:'about'}">关于</router-link></li>
-      <li><router-link :to = "{name:'null'}">注册</router-link></li>
-      <li><router-link :to = "{name:'null'}">登录</router-link></li>
     </ul>
   </header>
 </template>
