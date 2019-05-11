@@ -5,6 +5,7 @@
     <input placeholder='Access Token' v-model=accessToken>
     <button @click='login'>登　录</button>
     <p>{{error}}</p>
+    <p>可使用测试Access Token：50b78e1d-cf09-40d5-8c3a-d720a4aab84a</p>
   </div>
 </div>
 </template>
