@@ -3,9 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './vuex/store'
 import Axios from 'Axios'
 import vueHeadful from 'vue-headful'
-import store from './store'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = Axios
@@ -19,6 +19,22 @@ new Vue({
   template: '<App/>'
 })
 Vue.component('vue-headful', vueHeadful);
+
+router.beforeEach((to, from, next) => {
+  let getFlag = localStorage.getItem("Flag");
+  if(getFlag === "isLogin"){
+    store.state.isLogin = true
+    next()
+  }else{
+    if(to.meta.isLogin){
+      next({
+        path: '/login',
+      })
+    }else{
+      next()
+    }
+  }
+})
 
 Vue.filter('formatDate', function (str) {
   if (!str) return ''

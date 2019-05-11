@@ -18,7 +18,8 @@ export default new Router({
         main: Postlist
       },
       meta:{
-        title:'CNode'
+        title:'CNode',
+        isLogin: false
       }
     },
     {
@@ -29,7 +30,8 @@ export default new Router({
         slidebar:SlideBar
       },
       meta:{
-        title:'CNode'
+        title:'CNode',
+        isLogin: false
       }
     },
     {
@@ -37,6 +39,9 @@ export default new Router({
       path: '/user_info/:name',
       components:{
         main: UserInfo
+      },
+      meta:{
+        isLogin: false
       }
     },
     {
@@ -44,6 +49,19 @@ export default new Router({
       path: '/login',
       components:{
         main: Login
+      },
+      meta:{
+        isLogin: false
+      }
+    },
+    {
+      name: 'me',
+      path: '/me',
+      components:{
+        main: UserInfo
+      },
+      meta:{
+        isLogin: true
       }
     },
     {
@@ -51,6 +69,9 @@ export default new Router({
       path: '/about',
       components:{
         main: About
+      },
+      meta:{
+        isLogin: false
       }
     }
   ]

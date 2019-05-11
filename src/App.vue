@@ -15,6 +15,12 @@ export default {
   name: 'App',
   components: {
     Header,
+  },
+  created(){
+    let getFlag = localStorage.getItem("Flag");
+    if(getFlag === "isLogin"){
+      this.$store.state.isLogin = true
+    }
   }
 }
 </script>
